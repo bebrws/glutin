@@ -32,7 +32,7 @@ use winit::event_loop::EventLoopWindowTarget;
 /// [`Context`]: struct.Context.html
 #[derive(Debug)]
 pub struct Context<T: ContextCurrentState> {
-    pub(crate) context: platform_impl::Context,
+    pub context: platform_impl::Context,
     pub(crate) phantom: PhantomData<T>,
 }
 

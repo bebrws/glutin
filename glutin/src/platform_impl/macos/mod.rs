@@ -219,6 +219,36 @@ impl Context {
     }
 
     #[inline]
+    pub unsafe fn make_on_top(&self) -> Result<(), ContextError> {
+        match *self {
+            Context::WindowedContext(ref c) => {
+                let _: () = msg_send![*c.context, setLevel: 9];
+            }
+            Context::HeadlessContext(ref c) => {
+                let _: () = msg_send![*c.context, setLevel: 9];
+            }
+
+            // let _: () = msg_send![layer, setContentsScale: scale_factor];
+            // valid_context = msg_send![eagl_context, initWithAPI: version];
+            // let draw_props: ffi::id = msg_send![draw_props,
+            //     initWithObjects:
+            //         vec![
+            //             msg_send![number_class, numberWithBool:NO],
+            //             ffi::kEAGLColorFormatRGB565,
+            //         ].as_ptr()
+            //     forKeys:
+            //         vec![
+            //             ffi::kEAGLDrawablePropertyRetainedBacking,
+            //             ffi::kEAGLDrawablePropertyColorFormat,
+            //         ].as_ptr()
+            //     count: 2
+            // ];
+
+        }
+        Ok(())
+    }
+
+    #[inline]
     pub unsafe fn make_not_current(&self) -> Result<(), ContextError> {
         if self.is_current() {
             match *self {

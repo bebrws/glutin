@@ -1,8 +1,11 @@
 use super::*;
 
+use std::os::raw::c_void;
+
 use std::marker::PhantomData;
 use winit::event_loop::EventLoopWindowTarget;
 use winit::window::{Window, WindowBuilder};
+use winit::platform::macos::WindowExtMacOS;
 
 /// Represents an OpenGL [`Context`] and the [`Window`] with which it is
 /// associated.
@@ -91,14 +94,18 @@ pub type RawContext<T> = ContextWrapper<T, ()>;
 /// [`Context`]: struct.Context.html
 #[derive(Debug)]
 pub struct ContextWrapper<T: ContextCurrentState, W> {
-    pub(crate) context: Context<T>,
-    pub(crate) window: W,
+    pub context: Context<T>,
+    pub window: W,
 }
 
 impl<T: ContextCurrentState> WindowedContext<T> {
     /// Borrow the inner `W`.
     pub fn window(&self) -> &Window {
         &self.window
+    }
+
+    pub fn ns_window(&self) -> *mut c_void {
+        self.window.ns_window()
     }
 
     /// Split the [`Window`] apart from the OpenGL [`Context`]. Should only be

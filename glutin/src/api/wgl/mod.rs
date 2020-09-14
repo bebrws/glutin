@@ -27,7 +27,7 @@ use std::os::windows::ffi::OsStrExt;
 /// Note: should be destroyed before its window.
 #[derive(Debug)]
 pub struct Context {
-    context: ContextWrapper,
+    pub context: ContextWrapper,
 
     hdc: HDC,
 
