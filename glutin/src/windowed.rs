@@ -1,5 +1,8 @@
 use super::*;
 
+// extern crate image;
+// extern crate glium;
+
 use std::os::raw::c_void;
 
 use std::marker::PhantomData;
@@ -107,6 +110,7 @@ impl<T: ContextCurrentState> WindowedContext<T> {
     pub fn ns_window(&self) -> *mut c_void {
         self.window.ns_window()
     }
+
 
     /// Split the [`Window`] apart from the OpenGL [`Context`]. Should only be
     /// used when intending to transfer the [`RawContext<T>`] to another
