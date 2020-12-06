@@ -19,7 +19,8 @@ serde = ["winit/serde"]
 [dependencies]
 image = "0.23.9"
 lazy_static = "1.3"
-winit = { git = "https://github.com/bebrws/winit", branch = "master" }
+# winit = { git = "https://github.com/bebrws/winit", branch = "master" }
+winit = {  path = "/Users/bbarrows/repos/winit22" }
 
 [target.'cfg(target_os = "android")'.dependencies]
 android_glue = "0.2"
